@@ -13,7 +13,7 @@ public class WebController {
 
 	@Autowired
 	EmpleadoService empleadoService;
-	
+
 	@GetMapping("/saludo")
 	public String greeting(@RequestParam(name = "name", required = false, defaultValue = "Mundo") String name,
 			Model model) {
@@ -25,6 +25,15 @@ public class WebController {
 	@GetMapping("/error")
 	public String errorPage() {
 		return "error";
+	}
+
+	@GetMapping("/listarEmpleados")
+	public String listarEmp(Model model) {
+		model.addAttribute("listaEmp", empleadoService.listar());
+		model.addAttribute("listaEmpConE", empleadoService.listarFiltroNombre("e"));
+		model.addAttribute("listaEmpNombreExacto", empleadoService.listarFiltroNombreEs("Rocío"));
+		model.addAttribute("listaJPA", empleadoService.listarConJPA(2, "%o%"));
+		return "listarDeEmpleados";
 	}
 
 }
