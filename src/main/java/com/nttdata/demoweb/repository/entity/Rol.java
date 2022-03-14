@@ -5,9 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.security.core.GrantedAuthority;
+
 @Entity
 @Table
-public class Rol {
+public class Rol implements GrantedAuthority {
 
 	@Id
 	@Column
@@ -30,6 +32,12 @@ public class Rol {
 
 	public void setRol(String rol) {
 		this.rol = rol;
+	}
+
+	@Override
+	public String getAuthority() { // 'ADMIN' -> 'ROLE_ADMIN' ## 'GESTOR' -> 'ROLE_GESTOR'
+		// TODO Auto-generated method stub
+		return ("ROLE_" + this.rol).toUpperCase();
 	}
 
 }
