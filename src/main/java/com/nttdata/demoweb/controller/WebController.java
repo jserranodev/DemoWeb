@@ -1,6 +1,7 @@
 package com.nttdata.demoweb.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,6 +29,7 @@ public class WebController {
 	}
 
 	@GetMapping("/listarEmpleados")
+	@Cacheable(value="empleados")
 	public String listarEmp(Model model) {
 		model.addAttribute("listaEmp", empleadoService.listar());
 		model.addAttribute("listaEmpConE", empleadoService.listarFiltroNombre("e"));
