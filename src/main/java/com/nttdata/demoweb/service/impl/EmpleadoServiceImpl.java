@@ -3,6 +3,7 @@ package com.nttdata.demoweb.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 
 import com.nttdata.demoweb.repository.EmpleadoRepo;
@@ -48,6 +49,24 @@ public class EmpleadoServiceImpl implements EmpleadoService{
 	public Empleado inserta(Empleado emp) {
 		// TODO Auto-generated method stub
 		return empleadoRepo.save(emp);
+	}
+
+	@Override
+	public void modificar(Empleado empleado) {
+		// TODO Auto-generated method stub
+		empleadoRepo.save(empleado);
+	}
+
+	@Override
+	public void eliminarEmpleado(Integer id) {
+		// TODO Auto-generated method stub
+		empleadoRepo.deleteById(id);
+	}
+
+	@Override
+	public Empleado getById(Integer id) {
+		// TODO Auto-generated method stub
+		return empleadoRepo.findById(id).orElse(null);
 	}
 	
 }

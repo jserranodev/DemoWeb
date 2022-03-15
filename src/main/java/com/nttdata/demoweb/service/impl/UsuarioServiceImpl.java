@@ -1,7 +1,5 @@
 package com.nttdata.demoweb.service.impl;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,12 +15,6 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService {
 
 	@Autowired
 	UsuarioRepoJPA usuarioDAO;
-
-	@Override
-	public List<Usuario> listar() {
-		// TODO Auto-generated method stub
-		return usuarioDAO.findAll();
-	}
 
 	@Override
 	public Usuario buscarPorUsername(String username) {
